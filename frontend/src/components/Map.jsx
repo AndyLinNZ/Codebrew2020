@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
+import 'mapbox-gl/dist/mapbox-gl.css'
 import mapboxgl from 'mapbox-gl'
 import styled from 'styled-components'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import VaccFind from '../assets/VaccFind.png'
 
 const MapContainer = styled.div`
   position: absolute;
@@ -10,11 +11,21 @@ const MapContainer = styled.div`
   right: 0;
   bottom: 0;
 `
+
+const VaccLogo = styled.img`
+  bottom: 0;
+  width: 250px;
+  height: auto;
+  position: absolute;
+  display: block;
+  margin-bottom: -16px;
+`
 const Map = () => {
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiamR1YmFyIiwiYSI6ImNrY3Bwa3NodjBkeTMzMm1mY2lnb2gwaTUifQ.wwHdEi8iV7Co3ORMUHTmdA'
   
   const mapContainerRef = useRef(null)
+  const [userLocation, setUserLocation] = useState([])
   const [map, setMap] = useState(null)
 
   useEffect(() => {
@@ -23,6 +34,7 @@ const Map = () => {
       style: 'mapbox://styles/mapbox/light-v10',
       center: [144.963058, -37.813629],
       zoom: 11,
+      minZoom: 9,
       attributionControl: false
     })
     map.addControl(
@@ -38,14 +50,35 @@ const Map = () => {
         }),
         'bottom-right'
       )
+      const geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        fitBoundsOptions: {
+          zoom: 13
+        },
+        trackUserLocation: true,
+        showUserLocation: false,
+        showAccuracyCircle: false
+      })
+      map.addControl(geolocate, 'bottom-right')
+      geolocate.on('geolocate', (e) => {
+        const lng = e.coords.longitude
+        const lat = e.coords.latitude
+        console.log('hello')
+        setUserLocation([lng, lat])
+      })
     })
     setMap(map)
     return () => map.remove()
   }, [])
+  
   return (
-    <MapContainer ref={mapContainerRef}>
-      <div>Hello</div>
-    </MapContainer>
+    <div>
+      <MapContainer ref={mapContainerRef}/>
+      <VaccLogo src={VaccFind} alt="vaccfind"/>
+    </div>
+    
   )
 }
 
