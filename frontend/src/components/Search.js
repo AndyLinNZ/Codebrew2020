@@ -57,7 +57,6 @@ function Search(props) {
         props.onFormSubmit([lng, lat])
       }
   }
-
   return (
     <form>
       <input

@@ -60,4 +60,20 @@ input[type="text"]
     width: 90%;
     height: 60px;
 }
+
+div.register {
+    background-color:whitesmoke;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    top: 400px;
+	bottom: 450px;
+	left: 300px;
+	right: 300px;
+    border-radius: 10px;
+    border: 2px groove;
+    width: 500px;
+    height: 700px;
+    margin: auto;
+}
    

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Map from './components/Map';
 import Home from './components/layouts/Home';
+import { UserForm } from './components/UserForm';
 
 function App() {
   
@@ -20,3 +21,4 @@ function App() {
 }
 
 export default App;
+
