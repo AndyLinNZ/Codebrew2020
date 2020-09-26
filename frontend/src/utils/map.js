@@ -9,7 +9,7 @@ import { LocalHospital, Home } from '@material-ui/icons';
 export const addMarkers = ({
   map,
   hospitalData = [],
-  userLocation = []
+  location = []
 }) => {
   if (!map) {
     return
@@ -23,10 +23,11 @@ export const addMarkers = ({
     ))
     hospitalMarker.addTo(map)
   })
-  if (userLocation.length === 2) {
+  if (location.length === 2) {
     const userMarker = createMarker(<Home style={{ fontSize: 40, color: blue[300], cursor: 'pointer' }}/>, { anchor: 'bottom' })
-    userMarker.setLngLat(userLocation)
+    userMarker.setLngLat(location)
     userMarker.addTo(map)
+    map.flyTo({center: location, zoom: 13})
   }
 }
 

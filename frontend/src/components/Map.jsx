@@ -21,6 +21,7 @@ const VaccLogo = styled.img`
   width: 250px;
   height: auto;
   position: absolute;
+  margin: 10px;
   margin-bottom: -16px;
 `
 
@@ -34,30 +35,30 @@ const GitHubIcon = styled.img`
   height: auto;
 `
 
-const Map = () => {
+const Map = ({ location = [] }) => {
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiamR1YmFyIiwiYSI6ImNrY3Bwa3NodjBkeTMzMm1mY2lnb2gwaTUifQ.wwHdEi8iV7Co3ORMUHTmdA'
   
   const mapContainerRef = useRef(null)
-  const [userLocation, setUserLocation] = useState([])
   const [hospitalData, setHospitalData] = useState([])
   const [map, setMap] = useState(null)
 
   useEffect(() => {
     const getHospitalData = async () => {
-      if (userLocation.length === 2) {
-        const res = await fetchHospitals(userLocation)
+      if (location.length === 2) {
+        console.log(location)
+        const res = await fetchHospitals(location)
         if (res.data.hospitals) {
           setHospitalData(res.data.hospitals)
         }
       }
     }
     getHospitalData()
-  }, [userLocation])
+  }, [location])
 
   useEffect(() => {
-    addMarkers({map, hospitalData, userLocation})
-  }, [hospitalData, map, userLocation])
+    addMarkers({map, hospitalData, location})
+  }, [hospitalData, map, location])
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -81,23 +82,6 @@ const Map = () => {
         }),
         'bottom-right'
       )
-      const geolocate = new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        fitBoundsOptions: {
-          zoom: 13
-        },
-        trackUserLocation: true,
-        showUserLocation: false,
-        showAccuracyCircle: false
-      })
-      map.addControl(geolocate, 'bottom-right')
-      geolocate.on('geolocate', (e) => {
-        const lng = e.coords.longitude
-        const lat = e.coords.latitude
-        setUserLocation([lng, lat])
-      })
     })
     setMap(map)
     return () => map.remove()
