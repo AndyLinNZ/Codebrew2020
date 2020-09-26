@@ -5,6 +5,7 @@ import mapboxgl from 'mapbox-gl'
 import styled from 'styled-components'
 import VaccFind from '../assets/VaccFind.png'
 import GitHub from '../assets/github.png'
+import { fetchHospitals } from '../actions/fetchHospitals'
 
 const MapContainer = styled.div`
   position: absolute;
@@ -38,7 +39,25 @@ const Map = () => {
   
   const mapContainerRef = useRef(null)
   const [userLocation, setUserLocation] = useState([])
+  const [hospitalData, setHospitalData] = useState([])
   const [map, setMap] = useState(null)
+
+  useEffect(() => {
+    const getHospitalData = async () => {
+      if (userLocation.length === 2) {
+        const res = await fetchHospitals(userLocation)
+        if (res.data.hospitals) {
+          setHospitalData(res.data.hospitals)
+          console.log(res.data.hospitals)
+        }
+      }
+    }
+    getHospitalData()
+  }, [userLocation])
+
+  useEffect(() => {
+
+  }, [hospitalData])
 
   useEffect(() => {
     const map = new mapboxgl.Map({
