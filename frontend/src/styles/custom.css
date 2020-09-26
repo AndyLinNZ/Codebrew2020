@@ -1,0 +1,9 @@
+.mapboxgl-ctrl-bottom-left {
+  top: 0;
+  right: 0;
+  left: unset !important;
+  bottom: unset !important;
+}
+.mapboxgl-ctrl-bottom-left .mapboxgl-ctrl {
+  margin: 10px 10px 0px 0px !important;
+}

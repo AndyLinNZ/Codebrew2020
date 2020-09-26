@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import VaccFind from '../assets/VaccFind.png'
 import GitHub from '../assets/github.png'
 import { fetchHospitals } from '../actions/fetchHospitals'
+import { addMarkers } from '../utils/map'
 
 const MapContainer = styled.div`
   position: absolute;
@@ -48,7 +49,6 @@ const Map = () => {
         const res = await fetchHospitals(userLocation)
         if (res.data.hospitals) {
           setHospitalData(res.data.hospitals)
-          console.log(res.data.hospitals)
         }
       }
     }
@@ -56,8 +56,8 @@ const Map = () => {
   }, [userLocation])
 
   useEffect(() => {
-
-  }, [hospitalData])
+    addMarkers({map, hospitalData, userLocation})
+  }, [hospitalData, map, userLocation])
 
   useEffect(() => {
     const map = new mapboxgl.Map({
