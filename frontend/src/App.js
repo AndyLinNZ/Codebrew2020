@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <Map/>
+      <Map location={location} />
       {location.length !== 2 && <Home onFormSubmit={onFormSubmit}/>}
     </div>
   );

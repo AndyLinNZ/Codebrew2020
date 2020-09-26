@@ -81,6 +81,7 @@ const inputStyle = {
     width: "90%",
     height: "60px",
     margin: "10px",
+    borderRadius: 5
 }
 
 export default Search;

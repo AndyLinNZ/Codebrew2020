@@ -9,7 +9,7 @@ export const Home = (props) =>  {
     }
     return (
         <div className="container">
-            <img src={VacFind} alt="VacFind" style={{ width: "600px" }} />
+            <img src={VacFind} alt="VacFind" style={{ width: "600px", padding: 'auto', marginLeft: 'auto', marginRight: 'auto' }} />
             <p className="caption"> Find vaccine providers near you, and book appointments! </p>
             <br></br>
             <hr style={{ width: "90%", margin: "auto" }}></hr>
