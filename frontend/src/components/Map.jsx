@@ -3,7 +3,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { OutboundLink } from 'react-ga'
 import mapboxgl from 'mapbox-gl'
 import styled from 'styled-components'
-import VaccFind from '../assets/VaccFind.png'
+import VaccFind from '../imgs/Logo3.png'
 import GitHub from '../assets/github.png'
 import { fetchHospitals } from '../actions/fetchHospitals'
 import { addMarkers } from '../utils/map'
@@ -22,7 +22,6 @@ const VaccLogo = styled.img`
   height: auto;
   position: absolute;
   margin: 10px;
-  margin-bottom: -16px;
 `
 
 const GitHubIcon = styled.img`
@@ -38,7 +37,6 @@ const GitHubIcon = styled.img`
 const Map = ({ location = [] }) => {
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiamR1YmFyIiwiYSI6ImNrY3Bwa3NodjBkeTMzMm1mY2lnb2gwaTUifQ.wwHdEi8iV7Co3ORMUHTmdA'
-  
   const mapContainerRef = useRef(null)
   const [hospitalData, setHospitalData] = useState([])
   const [map, setMap] = useState(null)

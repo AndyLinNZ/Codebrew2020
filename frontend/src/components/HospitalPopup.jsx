@@ -41,7 +41,7 @@ const Distance = styled.p`
   padding: 5px;
   padding-right: 11px;
   text-align: right;
-  font-size: 14px;
+  font-size: 16px;
 `
 
 const StyledRoom = styled(Room)`
@@ -116,10 +116,10 @@ const determineColor = (level) => {
     return 'black'
   }
 }
-const HospitalPopup = ({ vaccineLevel, address, phoneNumber, name, openingHours, website }) => {
+
+const HospitalPopup = ({ distance, vaccineLevel, address, phoneNumber, name, openingHours, website }) => {
   
   const openNow = _get(openingHours, 'open_now', undefined)
-  
   
   const [hours, setHours] = useState('')
 
@@ -145,7 +145,7 @@ const HospitalPopup = ({ vaccineLevel, address, phoneNumber, name, openingHours,
           {name}
         </Title>
         <Distance>
-          500m away
+          {distance.toFixed(2)} km
         </Distance>
       </TitleArea>
       <VaccineArea>
