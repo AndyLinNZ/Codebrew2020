@@ -1,73 +1,78 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import '../App.css';
-import {List, ListItem} from 'material-ui/List'
+import { List, ListItem } from 'material-ui/List'
 import Button from '@material-ui/core/Button';
-import axios from 'axios'
+import { submitUserData } from '../actions/submitUserData'
+import { CircularProgress } from '@material-ui/core'
 
-export class Confirm extends Component {
-    continue = e => {
+export const Confirm = ({ values: { firstName, lastName, email, phone, time, dob, clinicName }, nextStep, prevStep }) => {
+
+    const [loading, setLoading] = useState(false)
+
+    const next = async (e) => {
         e.preventDefault();
-        console.log(this.props)
-        this.props.nextStep();
+        const fullname = firstName + " " + lastName
+        setLoading(true)
+        await submitUserData({ fullname, email, phone, appointmentTime: time, dob, hospital: clinicName })
+        nextStep();
     }
 
-    back = e => {
+
+    const back = e => {
         e.preventDefault();
-        this.props.prevStep();
+        prevStep();
     }
+    return (
+        <div className="register">
+            {loading ? <CircularProgress style={{marginTop:270}}/> :
+                <MuiThemeProvider>
+                    <>
+                        <List style={{ padding: 0, margin: 0 }}>
+                            <ListItem
+                                primaryText="First Name"
+                                secondaryText={firstName}
+                            />
+                            <ListItem
+                                primaryText="Last Name"
+                                secondaryText={lastName}
+                            />
+                            <ListItem
+                                primaryText="Email"
+                                secondaryText={email}
+                            />
+                            <ListItem
+                                primaryText="Phone Number"
+                                secondaryText={phone}
+                            />
+                            <ListItem
+                                primaryText="Birthday"
+                                secondaryText={dob}
+                            />
+                            <ListItem
+                                primaryText="Appointment Date"
+                                secondaryText={time.split("T")[0]}
+                            />
+                            <ListItem
+                                primaryText="Appointment Time"
+                                secondaryText={time.split("T")[1]}
+                            />
+                        </List>
+                        <Button variant="contained"
+                            style={styles.button}
+                            onClick={back}
+                        > Back
+                </Button>
+                        <Button variant="contained"
+                            style={styles.button}
+                            onClick={next}
+                        > Confirm and Continue
+                </Button>
+                    </>
+                </MuiThemeProvider>}
 
-    render() {
-        const { values: { firstName, lastName, email, phone, time, dob, clinicName } } = this.props;
-        return (
-            <div className="register">
-            <MuiThemeProvider>
-                <React.Fragment>
-                    <List style={{padding:0, margin:0}}>
-                        <ListItem
-                        primaryText="First Name"
-                        secondaryText= {firstName}
-                        />
-                        <ListItem
-                        primaryText="Last Name"
-                        secondaryText= {lastName}
-                        />
-                        <ListItem
-                        primaryText="Email"
-                        secondaryText= {email}
-                        />
-                        <ListItem
-                        primaryText="Phone Number"
-                        secondaryText= {phone}
-                        />
-                        <ListItem
-                        primaryText="Birthday"
-                        secondaryText= {dob}
-                        />
-                        <ListItem
-                        primaryText="Appointment Date"
-                        secondaryText= {time.split("T")[0]}
-                        />
-                        <ListItem
-                        primaryText="Appointment Time"
-                        secondaryText= {time.split("T")[1]}
-                        />
-                    </List>
-                    <Button variant="contained"
-                    style={styles.button}
-                    onClick={this.back}
-                    > Back
-                    </Button>
-                    <Button variant="contained"
-                    style={styles.button}
-                    onClick={this.continue}
-                    > Confirm and Continue
-                    </Button>
-                    </React.Fragment>
-            </MuiThemeProvider>
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
 const styles = {
