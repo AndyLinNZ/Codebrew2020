@@ -1,14 +1,19 @@
-import React from 'react';
-import Home from './components/layouts/Home'
-import Map from './components/Map'
-import vaccFind from './assets/VaccFind.png'
-
+import React, { useState } from 'react';
+import Map from './components/Map';
+import Home from './components/layouts/Home';
 
 function App() {
+  
+  const [location, setLocation] = useState([])
+
+  const onFormSubmit = point => {
+    setLocation(point)
+  }
+
   return (
     <div className="App">
       <Map/>
-      <Home/>
+      {location.length !== 2 && <Home onFormSubmit={onFormSubmit}/>}
     </div>
   );
 

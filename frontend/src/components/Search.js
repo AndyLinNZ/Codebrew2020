@@ -26,7 +26,7 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
     autoCompleteRef.current,
     { types: [], componentRestrictions: { country: "au" } }
   );
-  autoComplete.setFields(["address_components", "formatted_address"]);
+  autoComplete.setFields(["address_components", "formatted_address", "geometry"]);
   autoComplete.addListener("place_changed", () =>
     handlePlaceSelect(updateQuery)
   );
@@ -38,31 +38,28 @@ async function handlePlaceSelect(updateQuery) {
   updateQuery(query);
 }
 
-function Search() {
+function Search(props) {
   const [query, setQuery] = useState("");
-  const [finalQuery, setFinalQuery] = useState("");
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
     loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=AIzaSyChqFfRblEdYBYRzlurWG2QTtbgIjVl9AQ&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_TOKEN}&libraries=places`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
   }, []);
 
-  useEffect(() => {
-    setFinalQuery(query);
-    console.log(query);
-  }, [query]
-  )
-
   const onSubmit = (e) => {
       e.preventDefault();
-      return false;
+      if (autoComplete.getPlace() !== undefined) {
+        const lat = autoComplete.getPlace().geometry.location.lat()
+        const lng = autoComplete.getPlace().geometry.location.lng()
+        props.onFormSubmit([lng, lat])
+      }
   }
 
-    return (
-    <form onSubmit={onSubmit}>
+  return (
+    <form>
       <input
         type="text"
         style={inputStyle}
@@ -71,8 +68,11 @@ function Search() {
         placeholder="Enter or choose your location here"
         value={query}
       />
+      <button onClick={onSubmit} style={{fontSize: 26, margin:20, cursor: 'pointer', boxShadow: '1px 1px grey', borderRadius: 5, padding: 6}}>
+        Submit
+      </button>
     </form>
-  );
+  )
 }
 
 const inputStyle = {

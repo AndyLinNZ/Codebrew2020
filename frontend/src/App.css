@@ -4,12 +4,15 @@ div.container {
     text-align: center;
     display: inline-block;
     position: absolute;
-    top: 50px;
+    top: 250px;
 	bottom: 450px;
 	left: 300px;
 	right: 300px;
     border-radius: 10px;
     border: 2px groove;
+    width: 700px;
+    height: 450px;
+    margin: auto;
 }
 
 img {
