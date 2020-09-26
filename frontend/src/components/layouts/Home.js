@@ -3,6 +3,9 @@ import '../../App.css';
 import VacFind from '../../img/Logo3.png'
 
 export default class Home extends Component {
+    state = {
+        address: ""
+    }
     render() {
         return (
             <div className="container">
@@ -26,9 +29,7 @@ const inputStyle = {
     textAlign: "center",
     width: "90%",
     height: "60px",
-    margin: "20px",
-    padding: "20px",
-    borderRadius: "25px",
+    margin: "10px",
 }
 
 

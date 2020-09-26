@@ -1,15 +1,16 @@
 
 div.container {
+    background-color:whitesmoke;
     text-align: center;
     display: inline-block;
     position: absolute;
-    top: 0;
+    top: 50px;
 	bottom: 50%;
 	left: 25%;
 	right: 25%;
     margin: auto;
     border-radius: 10px;
-    border: 5px groove;
+    border: 2px groove;
 }
 img {
     display: block;
@@ -19,10 +20,10 @@ img {
 
 .caption {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: 30px;
-    font-weight: 800;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: "MyFontBold";
 }
 
 * 
@@ -36,5 +37,14 @@ img {
     color:#8c9496;
     padding: 10px;
     font-size: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'MyFont';
+  }
+
+  @font-face {
+    font-family: 'MyFont';
+    src: local('MyFont'), url(./fonts/Gilroy-Light.otf) format('woff');
+  }
+  @font-face {
+    font-family: 'MyFontBold';
+    src: local('MyFontBold'), url(./fonts/Gilroy-ExtraBold.otf) format('woff');
   }
