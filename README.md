@@ -1,4 +1,11 @@
-# Codebrew2020
+# VaccFind
+
+## Team Members:
+- Andy Lin
+- Stefan Marbun
+- Joshua Dubar
+- Rakshith Ramprakash
+- Danil Linkov
 
 ## Description
 As countries are preparing to roll out potential coronavirus vaccines early next year, questions of logistics arise. VaccFinder is a free online service where users can look for the nearest locations offering Covid-19 vaccinations. 
