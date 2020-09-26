@@ -57,3 +57,32 @@ input[type="text"]
     font-size: 30px;
     font-family: 'MyFont';
 }
+
+.search {
+    background-color: #c7d3d1;
+    text-align: center;
+    width: 90%;
+    height: 60px;
+}
+.react-mapbox-ac-menu {
+    width: auto;
+    position: absolute;
+    z-index: 9999;
+    background-color: #8c9496;
+    border: 1px solid #ccc;
+    margin: 50px
+  }
+   
+  .react-mapbox-ac-input {
+    margin-bottom: 1.5rem;
+  }
+   
+  .react-mapbox-ac-suggestion {
+    font-size: 18px;
+    cursor: pointer;
+    width: 600px;
+  }
+   
+  .react-mapbox-ac-suggestion:hover {
+    background-color:#10c4f1;
+  }
