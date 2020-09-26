@@ -46,7 +46,6 @@ const Map = ({ location = [] }) => {
   useEffect(() => {
     const getHospitalData = async () => {
       if (location.length === 2) {
-        console.log(location)
         const res = await fetchHospitals(location)
         if (res.data.hospitals) {
           setHospitalData(res.data.hospitals)
@@ -66,7 +65,7 @@ const Map = ({ location = [] }) => {
       style: 'mapbox://styles/mapbox/light-v10',
       center: [144.963058, -37.813629],
       zoom: 11,
-      minZoom: 9,
+      minZoom: 5,
       attributionControl: false
     })
     map.addControl(

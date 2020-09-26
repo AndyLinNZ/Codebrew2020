@@ -61,6 +61,23 @@ input[type="text"]
     height: 60px;
 }
 
+.mapboxgl-popup-anchor-bottom {
+    top: -30px;
+}
+
+.mapboxgl-popup-content {
+    border-radius: 5px;
+    width: 300px;
+    height: auto;
+    font-family: helvetica;
+}
+
+.mapboxgl-popup-close-button {
+    margin: 4px;
+    margin-right: 6px;
+    font-weight: bold;
+}
+
 div.register {
     background-color:whitesmoke;
     text-align: center;
@@ -76,4 +93,3 @@ div.register {
     height: 700px;
     margin: auto;
 }
-   
