@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import { OutboundLink } from 'react-ga'
 import mapboxgl from 'mapbox-gl'
 import styled from 'styled-components'
 import VaccFind from '../assets/VaccFind.png'
+import GitHub from '../assets/github.png'
 
 const MapContainer = styled.div`
   position: absolute;
@@ -17,9 +19,19 @@ const VaccLogo = styled.img`
   width: 250px;
   height: auto;
   position: absolute;
-  display: block;
   margin-bottom: -16px;
 `
+
+const GitHubIcon = styled.img`
+  top: 8px;
+  opacity: 0.7;
+  cursor: pointer;
+  right: 110px;
+  width: 25px;
+  position: absolute;
+  height: auto;
+`
+
 const Map = () => {
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiamR1YmFyIiwiYSI6ImNrY3Bwa3NodjBkeTMzMm1mY2lnb2gwaTUifQ.wwHdEi8iV7Co3ORMUHTmdA'
@@ -65,7 +77,6 @@ const Map = () => {
       geolocate.on('geolocate', (e) => {
         const lng = e.coords.longitude
         const lat = e.coords.latitude
-        console.log('hello')
         setUserLocation([lng, lat])
       })
     })
@@ -77,8 +88,8 @@ const Map = () => {
     <div>
       <MapContainer ref={mapContainerRef}/>
       <VaccLogo src={VaccFind} alt="vaccfind"/>
+      <GitHubIcon src={GitHub} alt="github" onClick={() => window.open("https://github.com/JoshDubar/Codebrew2020", "_blank")}/>
     </div>
-    
   )
 }
 
