@@ -12,8 +12,9 @@ div.container {
     border-radius: 10px;
     border: 2px groove;
 }
+
 img {
-    display: block;
+    padding: auto;
     margin-left: auto;
     margin-right: auto;
 }
@@ -26,8 +27,7 @@ img {
     font-family: "MyFontBold";
 }
 
-* 
-{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -38,13 +38,22 @@ img {
     padding: 10px;
     font-size: 30px;
     font-family: 'MyFont';
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: 'MyFont';
     src: local('MyFont'), url(./fonts/Gilroy-Light.otf) format('woff');
-  }
-  @font-face {
+}
+
+@font-face {
     font-family: 'MyFontBold';
     src: local('MyFontBold'), url(./fonts/Gilroy-ExtraBold.otf) format('woff');
-  }
+}
+
+input[type="text"]
+{
+    color:#8c9496;
+    padding: 10px;
+    font-size: 30px;
+    font-family: 'MyFont';
+}

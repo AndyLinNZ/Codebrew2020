@@ -1,35 +1,25 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import '../../App.css';
-import VacFind from '../../img/Logo3.png'
+import Search from '../Search';
+import VacFind from '../../imgs/Logo3.png'
 
 export default class Home extends Component {
-    state = {
-        address: ""
+    searchAddress = (address) => {
+        console.log(address);
     }
     render() {
-        return (
-            <div className="container">
-                <img src={VacFind} alt="VacFind" style={{width:"600px"}}/>
-                <p className="caption"> Find vaccine providers near you, and book appointments! </p>
-                <br></br>
-                <hr style={{width:"90%", margin: "auto"}}></hr>
-                <br></br>
-                <input
-                className="text"
-                    type="text"
-                    style={inputStyle}
-                    placeholder= "Enter or choose your location here"
-                />
-            </div>
-        )
+    return (
+        <div className="container">
+            <img src={VacFind} alt="VacFind" style={{ width: "600px" }} />
+            <p className="caption"> Find vaccine providers near you, and book appointments! </p>
+            <br></br>
+            <hr style={{ width: "90%", margin: "auto" }}></hr>
+            <br></br>
+            <Search searchAddress={this.searchAddress}/>
+        </div>
+    )
     }
 }
-const inputStyle = {
-    background: "#c7d3d1",
-    textAlign: "center",
-    width: "90%",
-    height: "60px",
-    margin: "10px",
-}
+
 
 
