@@ -59,9 +59,6 @@ def register_page():
 
 @app.route('/location')
 def index():
-    msg = Message('Hello', sender = 'vaccfinder@gmail.com', recipients = ['someone1@gmail.com'])
-    msg.body = "Hello Flask message sent from Flask-Mail"
-    mail.send(msg)
     
     long = request.args['longitude']
     lat = request.args['latitude']

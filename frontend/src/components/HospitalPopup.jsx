@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import _get from 'lodash/get'
 import styled from 'styled-components'
 import { Phone, WatchLater, Room, Favorite } from '@material-ui/icons';
+import Button from '@material-ui/core/Button';
+import { UserForm } from './UserForm';
 
 const TitleArea = styled.div`
   margin: 5px;
@@ -41,7 +43,7 @@ const Distance = styled.p`
   padding: 5px;
   padding-right: 11px;
   text-align: right;
-  font-size: 14px;
+  font-size: 16px;
 `
 
 const StyledRoom = styled(Room)`
@@ -116,10 +118,10 @@ const determineColor = (level) => {
     return 'black'
   }
 }
-const HospitalPopup = ({ vaccineLevel, address, phoneNumber, name, openingHours, website }) => {
+
+const HospitalPopup = ({ distance, vaccineLevel, address, phoneNumber, name, openingHours, website, booked }) => {
   
   const openNow = _get(openingHours, 'open_now', undefined)
-  
   
   const [hours, setHours] = useState('')
 
@@ -129,6 +131,10 @@ const HospitalPopup = ({ vaccineLevel, address, phoneNumber, name, openingHours,
     }
     const textData = weekDays[new Date().getUTCDay()]
     setHours(textData.substr(textData.indexOf(' ') + 1))
+  }
+
+  const onClick = () => {
+    booked(name)
   }
 
   useEffect(() => {
@@ -145,7 +151,7 @@ const HospitalPopup = ({ vaccineLevel, address, phoneNumber, name, openingHours,
           {name}
         </Title>
         <Distance>
-          500m away
+          {distance.toFixed(2)} km
         </Distance>
       </TitleArea>
       <VaccineArea>
@@ -174,6 +180,12 @@ const HospitalPopup = ({ vaccineLevel, address, phoneNumber, name, openingHours,
         <p>{hours ? hours: 'None provided'}</p>
         {openNow !== undefined && <OpenNow openNow={openNow}>{openNow ? 'Open now' : 'Closed'}</OpenNow>}
       </TodayArea>
+      <div style={{textAlign: 'center'}}>
+        <Button style={{background: 'black', color: 'white', margin: 5}} onClick={onClick}>
+          Book Appointment
+        </Button>
+      </div>
+      
     </div>
   )
 }
