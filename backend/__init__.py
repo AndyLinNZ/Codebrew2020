@@ -10,7 +10,6 @@ app = Flask(__name__)
 cors = CORS(app)
 mail = Mail(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'vaccfinder@gmail.com'
@@ -19,20 +18,21 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
-@app.route("/json", methods=["POST"])
+@app.route("/submit", methods=["POST"])
 def read_form_json():
+    print(request)
     if request.is_json:
         req = request.get_json()
-
-        fullname = req.get("fullname"),
-        email = req.get("email"),
-        dob = req.get("dob"),
-        phone = req.get("phone"),
+        fullname = req.get("fullname")
+        print(fullname)
+        email = req.get("email")
+        dob = req.get("dob")
+        phone = req.get("phone")
         appointmentTime = req.get("appointmentTime")
-        hospital = req.get()
+        hospital = req.get("hospital")
 
         msg = Message('Hello', sender = 'vaccfinder@gmail.com', recipients = [email])
-        msg.body = "Thank you for requesting a vaccination appointment at HOSPITAL_NAME through VaccFind. Your details are as below:\nFull name: "+fullname+"\nDate of Birth: "+dob+"\nPhone number: "+"phone\nAppointment Date & Time: "+appointmentTime+"Please reply to this email if any details are incorrect. The hospital will contact you through phone sometime before the appointment date."
+        msg.body = "Thank you for requesting a vaccination appointment at " + hospital + " through VaccFind. Your details are as below:\n\nFull name: "+fullname+"\nDate of Birth: "+dob+"\nPhone number: "+ phone +"\nAppointment Date & Time: "+appointmentTime+"\n\nPlease reply to this email if any details are incorrect. The hospital will contact you through phone sometime before the appointment date."
         mail.send(msg)
 
         return "Sent"
@@ -40,22 +40,6 @@ def read_form_json():
     else:
 
         return "Request was not JSON", 400
-
-@app.route('/register/', methods=["POST"])
-def register_page():
-    try:
-        form = RegistrationForm(request.form)
-
-        if request.method == "POST" and form.validate():
-            fullname  = form.fullname.data
-            email = form.email.data
-            dob = form.dob.data
-            phone = form.phone.data
-            appointmentTime = form.appointmentTime.data
-            "fullname\n"
-
-    except Exception as e:
-        return(str(e))
 
 @app.route('/location')
 def index():
