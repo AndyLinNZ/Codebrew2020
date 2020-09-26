@@ -60,4 +60,20 @@ input[type="text"]
     width: 90%;
     height: 60px;
 }
-   
+
+.mapboxgl-popup-anchor-bottom {
+    top: -30px;
+}
+
+.mapboxgl-popup-content {
+    border-radius: 5px;
+    width: 300px;
+    height: auto;
+    font-family: helvetica;
+}
+
+.mapboxgl-popup-close-button {
+    margin: 4px;
+    margin-right: 6px;
+    font-weight: bold;
+}
