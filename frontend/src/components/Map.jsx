@@ -34,12 +34,16 @@ const GitHubIcon = styled.img`
   height: auto;
 `
 
-const Map = ({ location = [] }) => {
+const Map = ({ location = [], bookedAppointment }) => {
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiamR1YmFyIiwiYSI6ImNrY3Bwa3NodjBkeTMzMm1mY2lnb2gwaTUifQ.wwHdEi8iV7Co3ORMUHTmdA'
   const mapContainerRef = useRef(null)
   const [hospitalData, setHospitalData] = useState([])
   const [map, setMap] = useState(null)
+
+  const booked = (name) => {
+    bookedAppointment(name)
+  }
 
   useEffect(() => {
     const getHospitalData = async () => {
@@ -54,7 +58,7 @@ const Map = ({ location = [] }) => {
   }, [location])
 
   useEffect(() => {
-    addMarkers({map, hospitalData, location})
+    addMarkers({ map, hospitalData, location, booked })
   }, [hospitalData, map, location])
 
   useEffect(() => {

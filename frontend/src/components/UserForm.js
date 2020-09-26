@@ -11,7 +11,8 @@ export class UserForm extends Component {
         email: '',
         phone: '',
         time: "2017-05-24T10:30",
-        dob: "2017-05-24"
+        dob: "2017-05-24",
+        clinicName: this.props.clinicName
     }
     // Proceed to next step
     nextStep =() => {
@@ -34,8 +35,8 @@ export class UserForm extends Component {
     }
     render() {
         const {step} = this.state;
-        const {firstName, lastName, email, phone, time, dob} = this.state;
-        const values = {firstName, lastName, email, phone, time, dob}
+        const {firstName, lastName, email, phone, time, dob, clinicName} = this.state;
+        const values = {firstName, lastName, email, phone, time, dob, clinicName}
         
         if (step === 1) {
                 return (

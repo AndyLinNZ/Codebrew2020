@@ -11,7 +11,6 @@ export class Success extends Component {
             <div className="register">
             <MuiThemeProvider>
                 <React.Fragment>
-                    <AppBar title="Success" style={styles.appbar}/>
                     <p style={styles.text}>Thank you for your submission. We will get back to you as soon as possible.</p>
                     </React.Fragment>
             </MuiThemeProvider>
@@ -29,7 +28,9 @@ const styles = {
     text: {
         fontFamily: "MyFont",
         fontSize: 30,
-        padding: 20
+        paddingTop: 180,
+        paddingLeft: 20,
+        paddingRight: 20
     }
 }
 

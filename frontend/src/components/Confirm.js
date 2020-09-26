@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import AppBar from 'material-ui/AppBar'
 import '../App.css';
 import {List, ListItem} from 'material-ui/List'
 import Button from '@material-ui/core/Button';
@@ -9,6 +8,7 @@ import axios from 'axios'
 export class Confirm extends Component {
     continue = e => {
         e.preventDefault();
+        console.log(this.props)
         this.props.nextStep();
     }
 
@@ -18,13 +18,12 @@ export class Confirm extends Component {
     }
 
     render() {
-        const { values: { firstName, lastName, email, phone, time, dob} } = this.props;
+        const { values: { firstName, lastName, email, phone, time, dob, clinicName } } = this.props;
         return (
             <div className="register">
             <MuiThemeProvider>
                 <React.Fragment>
-                    <AppBar title="Confirm User Data" style={styles.appbar}/>
-                    <List>
+                    <List style={{padding:0, margin:0}}>
                         <ListItem
                         primaryText="First Name"
                         secondaryText= {firstName}
@@ -73,7 +72,7 @@ export class Confirm extends Component {
 
 const styles = {
     button: {
-        margin: 50 
+        margin: 30
     },
     appbar: {
         background: '#8c9496',

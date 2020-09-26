@@ -25,7 +25,8 @@ const degreesToRadians = (degrees) => {
 export const addMarkers = ({
   map,
   hospitalData = [],
-  location = []
+  location = [],
+  booked
 }) => {
   if (!map) {
     return
@@ -36,7 +37,7 @@ export const addMarkers = ({
     const hospitalMarker = createMarker(<LocalHospital style={{ fontSize: 40, color: green[300], cursor: 'pointer' }}/>, { anchor: 'bottom' })
     hospitalMarker.setLngLat(coordinates)
     const distance = haverSine(location, coordinates)/1000
-    const popup = createPopup(<HospitalPopup distance={distance} vaccineLevel={vaccineLevel} address={address} phoneNumber={phoneNumber} name={name} website={website} openingHours={openingHours}/>)
+    const popup = createPopup(<HospitalPopup booked={booked} distance={distance} vaccineLevel={vaccineLevel} address={address} phoneNumber={phoneNumber} name={name} website={website} openingHours={openingHours}/>)
     hospitalMarker.setPopup(popup)
     hospitalMarker.addTo(map)
   })
