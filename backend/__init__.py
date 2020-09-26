@@ -20,26 +20,29 @@ mail = Mail(app)
 
 @app.route("/submit", methods=["POST"])
 def read_form_json():
-    print(request)
-    if request.is_json:
-        req = request.get_json()
-        fullname = req.get("fullname")
-        print(fullname)
-        email = req.get("email")
-        dob = req.get("dob")
-        phone = req.get("phone")
-        appointmentTime = req.get("appointmentTime")
-        hospital = req.get("hospital")
+    try:
+        if request.is_json:
+            req = request.get_json()
+            fullname = req.get("fullname")
+            print(fullname)
+            email = req.get("email")
+            dob = req.get("dob")
+            phone = req.get("phone")
+            appointmentTime = req.get("appointmentTime")
+            hospital = req.get("hospital")
 
-        msg = Message('Hello', sender = 'vaccfinder@gmail.com', recipients = [email])
-        msg.body = "Thank you for requesting a vaccination appointment at " + hospital + " through VaccFind. Your details are as below:\n\nFull name: "+fullname+"\nDate of Birth: "+dob+"\nPhone number: "+ phone +"\nAppointment Date & Time: "+appointmentTime+"\n\nPlease reply to this email if any details are incorrect. The hospital will contact you through phone sometime before the appointment date."
-        mail.send(msg)
+            msg = Message('Hello', sender = 'vaccfinder@gmail.com', recipients = [email])
+            msg.body = "Thank you for requesting a vaccination appointment at " + hospital + " through VaccFind. Your details are as below:\n\nFull name: "+fullname+"\nDate of Birth: "+dob+"\nPhone number: "+ phone +"\nAppointment Date & Time: "+appointmentTime+"\n\nPlease reply to this email if any details are incorrect. The hospital will contact you through phone sometime before the appointment date."
+            mail.send(msg)
 
-        return "Sent"
+            return "Sent"
 
-    else:
+        else:
 
-        return "Request was not JSON", 400
+            return "Request was not JSON", 400
+    except:
+        return "Email not sent"
+
 
 @app.route('/location')
 def index():
