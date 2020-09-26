@@ -5,10 +5,28 @@ import { green, blue } from '@material-ui/core/colors'
 import { LocalHospital, Home } from '@material-ui/icons';
 import HospitalPopup from '../components/HospitalPopup'
 
+const haverSine = (location, hospitalLocation) => {
+  const R = 6378137
+  const lng1 = location[0]
+  const lng2 = hospitalLocation[0]
+  const lat1 = location[1]
+  const lat2 = hospitalLocation[1]
+  let dLat = degreesToRadians(lat2 - lat1)
+  let dLong = degreesToRadians(lng2 - lng1)
+  let a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat1)) * Math.sin(dLong/2) * Math.sin(dLong/2)
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+  return R * c
+}
+
+const degreesToRadians = (degrees) => {
+  return degrees * Math.PI / 180;
+}
+
 export const addMarkers = ({
   map,
   hospitalData = [],
-  location = []
+  location = [],
+  booked
 }) => {
   if (!map) {
     return
@@ -18,7 +36,8 @@ export const addMarkers = ({
     const { formatted_address: address, formatted_phone_number: phoneNumber, name, opening_hours: openingHours,  vaccineLevel , website } = hospital
     const hospitalMarker = createMarker(<LocalHospital style={{ fontSize: 40, color: green[300], cursor: 'pointer' }}/>, { anchor: 'bottom' })
     hospitalMarker.setLngLat(coordinates)
-    const popup = createPopup(<HospitalPopup vaccineLevel={vaccineLevel} address={address} phoneNumber={phoneNumber} name={name} website={website} openingHours={openingHours}/>)
+    const distance = haverSine(location, coordinates)/1000
+    const popup = createPopup(<HospitalPopup booked={booked} distance={distance} vaccineLevel={vaccineLevel} address={address} phoneNumber={phoneNumber} name={name} website={website} openingHours={openingHours}/>)
     hospitalMarker.setPopup(popup)
     hospitalMarker.addTo(map)
   })

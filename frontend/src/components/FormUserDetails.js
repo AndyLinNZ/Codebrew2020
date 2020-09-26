@@ -75,7 +75,7 @@ export class FormUserDetails extends Component {
 
 const styles = {
     button: {
-        margin: 60
+        margin: 30
     },
     appbar: {
         background: '#8c9496',

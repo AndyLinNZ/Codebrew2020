@@ -18,5 +18,6 @@ def index():
     hospitals = nearby_hospitals(location)
     return json.dumps({ "hospitals": hospitals })
 
+
 if __name__ == '__main__':
     app.run()
