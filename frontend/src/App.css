@@ -1,0 +1,79 @@
+
+div.container {
+    background-color:whitesmoke;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    top: 250px;
+	bottom: 450px;
+	left: 300px;
+	right: 300px;
+    border-radius: 10px;
+    border: 2px groove;
+    width: 700px;
+    height: 450px;
+    margin: auto;
+}
+
+.caption {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "MyFontBold";
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+::placeholder { 
+    color:#8c9496;
+    padding: 10px;
+    font-size: 30px;
+    font-family: 'MyFont';
+}
+
+@font-face {
+    font-family: 'MyFont';
+    src: local('MyFont'), url(./fonts/Gilroy-Light.otf) format('woff');
+}
+
+@font-face {
+    font-family: 'MyFontBold';
+    src: local('MyFontBold'), url(./fonts/Gilroy-ExtraBold.otf) format('woff');
+}
+
+input[type="text"]
+{
+    color:#8c9496;
+    padding: 10px;
+    font-size: 30px;
+    font-family: 'MyFont';
+}
+
+.search {
+    background-color: #c7d3d1;
+    text-align: center;
+    width: 90%;
+    height: 60px;
+}
+
+.mapboxgl-popup-anchor-bottom {
+    top: -30px;
+}
+
+.mapboxgl-popup-content {
+    border-radius: 5px;
+    width: 300px;
+    height: auto;
+    font-family: helvetica;
+}
+
+.mapboxgl-popup-close-button {
+    margin: 4px;
+    margin-right: 6px;
+    font-weight: bold;
+}

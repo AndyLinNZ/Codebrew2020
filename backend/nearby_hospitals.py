@@ -1,5 +1,8 @@
 import googlemaps
 import time
+import random
+
+TYPES = ["High", "Medium", "Low", "Not Available"]
 
 def nearby_hospitals(location):
 
@@ -18,6 +21,8 @@ def nearby_hospitals(location):
         my_fields = ['name', 'formatted_address', 'formatted_phone_number', 'website', 'opening_hours', 'geometry']
 
         places_details = gmaps.place(place_id= place_id , fields= my_fields)
+
+        places_details['result']['vaccineLevel'] = random.choice(TYPES)
 
         stored_results.append(places_details['result'])
 
