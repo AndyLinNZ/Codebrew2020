@@ -16,6 +16,6 @@ We want to make vaccinations easy and accessible for all, especially in a time w
 install required npm dependencies in frontend folder, and required pip dependencies in backend folder. Then set the the appropriate environment variables up, for this you will need a google maps API key.
 
 - You can set the environment variables in frontend by setting REACT_APP_API_URL=http://127.0.0.1:5000 & REACT_APP_GOOGLE_TOKEN=YOURTOKEN
-- You can set the environment variables in backend by setting FLASK_APP=__init__.py & API_KEY=YOURTOKEN
+- You can set the environment variables in backend by setting FLASK_APP='\_\_init\_\_.py' & API_KEY=YOURTOKEN
 
 After this, you should be able run use flask run to run the backend, and npm run start to run the frontend. Have fun!
