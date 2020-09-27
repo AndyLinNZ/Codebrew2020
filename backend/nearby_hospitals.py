@@ -1,12 +1,15 @@
 import googlemaps
 import time
 import random
+from dotenv import load_dotenv
+import os
 
 TYPES = ["High", "Medium", "Low", "Not Available"]
 
 def nearby_hospitals(location):
 
-    API_KEY = 'AIzaSyCFrZTSQKRJ1XHTLoAhId30UcFgZX3fZLk'
+    load_dotenv()
+    API_KEY = os.getenv("API_KEY")
 
     gmaps = googlemaps.Client(key = API_KEY)
 
